@@ -1,0 +1,19 @@
+uuid: ab5086d8-a29a-4e75-9d42-b67491f87c27
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_translation
+    - node.type.dictionary_entry
+id: node.dictionary_entry.field_translation
+field_name: field_translation
+entity_type: node
+bundle: dictionary_entry
+label: Translation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

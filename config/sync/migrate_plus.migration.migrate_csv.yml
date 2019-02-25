@@ -1,0 +1,58 @@
+uuid: 86db0f35-bf3c-41cf-969c-a7074daf309d
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - veldeke_dictionary
+id: migrate_csv
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - CSV
+migration_group: null
+label: 'CSV file migration'
+source:
+  plugin: veldeke_dictionary_csv
+  path: /artifacts/veldeke-dictionary.csv
+  header_row_count: 1
+  keys:
+    - id
+  column_names:
+    -
+      id: Identifier
+    -
+      date: Date
+    -
+      1st_char_head_word: 'Fisrt character head word'
+    -
+      head_word: 'Head word'
+    -
+      translation: Translation
+    -
+      conjugation: Conjugation
+    -
+      remarks: Remarks
+process:
+  type:
+    plugin: default_value
+    default_value: dictionary_entry
+  title: head_word
+  field_head_word: head_word
+  field_1st_char_head_word:
+    plugin: first_char
+    callable: transform
+    source: head_word
+  field_1st_char_translation:
+    plugin: first_char
+    callable: transform
+    source: translation
+  field_remarks: remarks
+  field_translation: translation
+  field_conjugation: conjugation
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,69 @@
+uuid: 1948ba20-82f6-4930-858b-7b86feaba2dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dictionary_entry.field_1st_char_head_word
+    - field.field.node.dictionary_entry.field_1st_char_translation
+    - field.field.node.dictionary_entry.field_conjugation
+    - field.field.node.dictionary_entry.field_head_word
+    - field.field.node.dictionary_entry.field_remarks
+    - field.field.node.dictionary_entry.field_translation
+    - node.type.dictionary_entry
+  module:
+    - user
+id: node.dictionary_entry.default
+targetEntityType: node
+bundle: dictionary_entry
+mode: default
+content:
+  field_1st_char_head_word:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_1st_char_translation:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_conjugation:
+    weight: 110
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_head_word:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_remarks:
+    weight: 111
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_translation:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

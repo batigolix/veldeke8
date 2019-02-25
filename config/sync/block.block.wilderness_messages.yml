@@ -1,0 +1,22 @@
+uuid: 6775dc0e-1306-403b-9f98-882ad78ca08b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wilderness
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: wilderness_messages
+theme: wilderness
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 703a733e-96c7-424b-9248-9bd20c87160f
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - wilderness
+_core:
+  default_config_hash: za-39d5WDUg6XvbyqSnuVYEeq6QM4qKJxW8MnoAha5A
+id: wilderness_search
+theme: wilderness
+region: sidebar_first
+weight: -1
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

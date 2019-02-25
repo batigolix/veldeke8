@@ -1,0 +1,19 @@
+uuid: a2e45379-2876-4eec-89a5-0fcfb73fc518
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_conjugation
+    - node.type.dictionary_entry
+id: node.dictionary_entry.field_conjugation
+field_name: field_conjugation
+entity_type: node
+bundle: dictionary_entry
+label: Conjugation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

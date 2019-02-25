@@ -1,0 +1,19 @@
+uuid: 9f826bbd-8b4a-4171-8bd0-4fb850924e5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_head_word
+    - node.type.dictionary_entry
+id: node.dictionary_entry.field_head_word
+field_name: field_head_word
+entity_type: node
+bundle: dictionary_entry
+label: 'Head word'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
