@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - migrate
+title: 'Run dictionary migration'
+id: veldeke_dictionary_run_migration
+weight: 0
+module: veldeke_dictionary
+callback: veldeke_dictionary_run_migration
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
