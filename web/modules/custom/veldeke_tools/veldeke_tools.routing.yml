@@ -1,0 +1,24 @@
+
+veldeke_tools.add_books_controller_build:
+  path: '/veldeke_tools/add-books'
+  defaults:
+    _controller: '\Drupal\veldeke_tools\Controller\AddBooksController::build'
+    _title: 'Add books controller'
+  requirements:
+    _permission: 'access content'
+
+veldeke_tools.import_menu_controller_import_menu:
+  path: '/veldeke_tools/import_menu'
+  defaults:
+    _controller: '\Drupal\veldeke_tools\Controller\ImportMenuController::import_menu'
+    _title: 'Import menu controller'
+  requirements:
+    _permission: 'access content'
+
+veldeke_tools.hello_controller_hello:
+  path: '/veldeke_tools/hello/{name}'
+  defaults:
+    _controller: '\Drupal\veldeke_tools\Controller\HelloController::hello'
+    _title: 'build'
+  requirements:
+    _permission: 'access content'

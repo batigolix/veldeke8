@@ -1,0 +1,7 @@
+name: veldeke_tools
+type: module
+description: Custom code for Veldeke project
+core: 8.x
+package: Custom
+config_devel:
+  - migrate_plus.migration.migrate_books

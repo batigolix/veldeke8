@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains veldeke_tools.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function veldeke_tools_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the veldeke_tools module.
+    case 'help.page.veldeke_tools':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom code for Veldeke project') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Fetches the local NID from the migration source destination mapping table.
+ */
+function _veldeke_tools_migrate_get_local_nid($nid) {
+  $local_nid = 0;
+  $result = \Drupal::database()->select('migrate_map_migrate_books', 'mmvb')
+    ->fields('mmvb', array('destid1'))
+    ->condition('mmvb.sourceid1', $nid)
+    ->execute()->fetchField();
+  if ($result) {
+    $local_nid = $result;
+  }
+  return $local_nid;
+}
