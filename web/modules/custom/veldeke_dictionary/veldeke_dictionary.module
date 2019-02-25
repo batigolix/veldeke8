@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Contains veldeke_dictionary.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\MigrateExecutable;
+use Drupal\migrate\MigrateMessage;
+use Drupal\migrate_plus\Plugin\MigrationConfigEntityPluginManager;
+
+/**
+ * Implements hook_help().
+ */
+function veldeke_dictionary_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the veldeke_dictionary module.
+    case 'help.page.veldeke_dictionary':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function veldeke_dictionary_theme() {
+  return [
+    'veldeke_dictionary' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function veldeke_dictionary_migration_plugins_alter(&$definitions) {
+  $definitions['migrate_csv']['source']['path'] = drupal_get_path('module', 'veldeke_dictionary') . $definitions['migrate_csv']['source']['path'];
+}
+
+/**
+ * Implements hook_cron().
+ */
+function veldeke_dictionary_run_migration() {
+  $migration = \Drupal::service('plugin.manager.migration')->createInstance('migrate_csv');
+//  $migration->getIdMap()->prepareUpdate();
+  $executable = new MigrateExecutable($migration, new MigrateMessage());
+
+//  dd($executable);
+
+  $executable->import();
+}
+

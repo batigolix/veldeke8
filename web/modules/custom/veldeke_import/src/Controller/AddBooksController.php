@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\veldeke_tools\Controller;
+namespace Drupal\veldeke_import\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
@@ -36,15 +36,15 @@ class AddBooksController extends ControllerBase {
 
 //          kint($datum);
 
-          $nid = _veldeke_tools_migrate_get_local_nid($datum->nid);
+          $nid = _veldeke_import_migrate_get_local_nid($datum->nid);
 
           kint($datum->pid);
 
           $pid = 0;
           if (is_int($datum->pid) && $datum->pid > 0) {
-            $pid = _veldeke_tools_migrate_get_local_nid($datum->pid);
+            $pid = _veldeke_import_migrate_get_local_nid($datum->pid);
           }
-          $bid = _veldeke_tools_migrate_get_local_nid($datum->bid);
+          $bid = _veldeke_import_migrate_get_local_nid($datum->bid);
 
           kint($pid);
 
@@ -74,15 +74,15 @@ class AddBooksController extends ControllerBase {
                 $datum->has_children,
                 $datum->weight,
                 $datum->depth,
-                $datum->p1 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p1) : 0,
-                $datum->p2 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p2) : 0,
-                $datum->p3 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p3) : 0,
-                $datum->p4 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p4) : 0,
-                $datum->p5 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p5) : 0,
-                $datum->p6 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p6) : 0,
-                $datum->p7 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p7) : 0,
-                $datum->p8 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p8) : 0,
-                $datum->p9 > 0 ? _veldeke_tools_migrate_get_local_nid($datum->p9) : 0,
+                $datum->p1 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p1) : 0,
+                $datum->p2 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p2) : 0,
+                $datum->p3 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p3) : 0,
+                $datum->p4 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p4) : 0,
+                $datum->p5 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p5) : 0,
+                $datum->p6 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p6) : 0,
+                $datum->p7 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p7) : 0,
+                $datum->p8 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p8) : 0,
+                $datum->p9 > 0 ? _veldeke_import_migrate_get_local_nid($datum->p9) : 0,
             ]);
             $query->key('nid');
             $query->execute();

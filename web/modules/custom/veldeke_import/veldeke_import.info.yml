@@ -1,0 +1,11 @@
+name: veldeke_import
+type: module
+description: Import content for Veldeke project
+core: 8.x
+package: Custom
+dependencies:
+  - migrate_plus
+  - migrate_tools
+  - book
+config_devel:
+  - migrate_plus.migration.books

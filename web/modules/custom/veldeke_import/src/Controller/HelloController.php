@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\veldeke_tools\Controller;
+namespace Drupal\veldeke_import\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 

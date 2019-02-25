@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\veldeke_tools\Plugin\Block;
+namespace Drupal\veldeke_import\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
