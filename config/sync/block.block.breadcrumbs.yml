@@ -1,4 +1,4 @@
-uuid: 2f5f56cd-2677-49e7-9ebd-6f66689086f6
+uuid: 238de63c-c7e9-4379-9a24-57425b602ebf
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,10 @@ dependencies:
     - system
   theme:
     - wilderness
-_core:
-  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
-id: wilderness_breadcrumbs
+id: breadcrumbs
 theme: wilderness
-region: header
-weight: 0
+region: content
+weight: -3
 provider: null
 plugin: system_breadcrumb_block
 settings:

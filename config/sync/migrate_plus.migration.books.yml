@@ -19,9 +19,11 @@ process:
     plugin: default_value
     default_value: book
   title: title
+  created: created
+  changed: changed
   body/format:
     plugin: default_value
-    default_value: full_html
+    default_value: restricted_html
   body/value: body
   langcode:
     plugin: default_value

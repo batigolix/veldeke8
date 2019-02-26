@@ -9,7 +9,7 @@ _core:
 id: wilderness_page_title
 theme: wilderness
 region: content
-weight: -7
+weight: -2
 provider: null
 plugin: page_title_block
 settings:
