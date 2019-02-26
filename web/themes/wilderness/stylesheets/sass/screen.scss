@@ -16,6 +16,15 @@ body {
   background-repeat: repeat-x;
   background-attachment: fixed;
   background-position: bottom left;
+
+
+  a {
+    text-decoration: underline;
+    &:link, &:visited, &:hover {
+    }
+  }
+
+
 }
 
 .layout-container {
@@ -405,13 +414,8 @@ main {
 .header {
   @include outer-container;
   .site-logo {
-    @include span-columns(3);
-    @include media($tablet_wide) {
-      @include span-columns(2 of 8);
-    }
-    @include media($tablet_narrow) {
-      @include span-columns(1 of 6);
-    }
+    @include span-columns(12);
+    text-align: center;
   }
   .site-name-and-slogan {
     padding-top: 1.3em;
@@ -647,5 +651,17 @@ figure {
   }
   #cssmenu ul li a:before {
     display: none;
+  }
+}
+
+.theme-credits {
+  margin: 1em;
+  text-align: center;
+  color: #FFF;
+  font-size: 90%;
+  a {
+    &:link, &:visited, &:hover {
+      color: #FFF;
+    }
   }
 }
