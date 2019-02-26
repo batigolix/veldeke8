@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\veldeke_import\Plugin\Block;
+namespace Drupal\veldeke_tools\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -63,6 +63,5 @@ class ContactBlock extends BlockBase {
       '#markup' => $this->configuration['contact_markup_string'],
     );
   }
-
 
 }

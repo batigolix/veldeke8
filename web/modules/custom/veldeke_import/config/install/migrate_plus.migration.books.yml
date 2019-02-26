@@ -11,14 +11,14 @@ process:
     plugin: default_value
     default_value: book
   title: title
-#  created: date
+  created: created
 #  field_key: key
 #  field_code: code
 #  field_country: country
-  #  changed: date
+  changed: changed
   body/format:
      plugin: default_value
-     default_value: full_html
+     default_value: restricted_html
   body/value: body
   langcode:
     plugin: default_value

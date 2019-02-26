@@ -14,11 +14,3 @@ veldeke_tools.import_menu_controller_import_menu:
     _title: 'Import menu controller'
   requirements:
     _permission: 'access content'
-
-veldeke_tools.hello_controller_hello:
-  path: '/veldeke_tools/hello/{name}'
-  defaults:
-    _controller: '\Drupal\veldeke_tools\Controller\HelloController::hello'
-    _title: 'build'
-  requirements:
-    _permission: 'access content'

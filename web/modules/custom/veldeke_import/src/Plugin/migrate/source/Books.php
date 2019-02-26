@@ -4,6 +4,7 @@ namespace Drupal\veldeke_import\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
 use Drupal\migrate\Row;
+use Drupal\migrate\MigrateException;
 
 /**
  * Source plugin to import data from JSON files
@@ -33,15 +34,11 @@ class Books extends SourcePluginBase {
 
   public function fields() {
     return array(
-//      'date' => $this->t('Date'),
-//      'league' => $this->t('League'),
-//      'country_code' => $this->t('Country code'),
-//      'key' => $this->t('Key'),
-//      'id' => $this->t('ID'),
+      'nid' => $this->t('NID'),
       'title' => $this->t('Title'),
-//      'code' => $this->t('Code'),
-////      'date' => $this->t('Date Published'),
-//      'json_filename' => $this->t("Source JSON filename")
+      'body' => $this->t('Body'),
+      'changed' => $this->t('Last changed'),
+      'created' => $this->t('Created'),
     );
   }
 
@@ -55,38 +52,27 @@ class Books extends SourcePluginBase {
    *   An iterator containing the data for this source.
    */
   protected function initializeIterator() {
-
     $filepath = "http://veldeke7.test/veldeke_export/books.json";
-    $books = json_decode(file_get_contents($filepath), TRUE); // sets the title, body, etc.
-
-
+    try {
+      $result = file_get_contents($filepath);
+    } catch (\Exception $e) {
+      echo "Exception: " . $e->getMessage() . "\n";
+      $row['date'] = time();  // fallback – set it to now so we don't have errors
+      throw new MigrateException('Cannot read from source');
+    }
+    if ($result == FALSE) {
+      throw new MigrateException('Cannot download remote file  by SFTP.');
+    }
+    $books = json_decode($result, TRUE); // sets the title, body, etc.
     foreach ($books['content'] as $book) {
-
       $item = $book['item'];
-
       $row['title'] = $item['title'];
       $row['id'] = $item['nid'];
-      $row['body']=$item['body'];
-
-
-
-      // migrate needs the date as a UNIX timestamp
-//        try {
-//          // put your source data's time zone here, or just use strtotime() if it's already in UTC
-//          $d = new \DateTime($date, new \DateTimeZone('America/Los_Angeles'));
-//          $row['date'] = $d->format('U');
-//        } catch (\Exception $e) {
-//          echo "Exception: " . $e->getMessage() . "\n";
-//          $row['date'] = time();  // fallback – set it to now so we don't have errors
-//        }
-
-      // append it to the array of rows we can import
+      $row['body'] = $item['body'];
+      $row['created'] = $item['created'];
+      $row['changed'] = $item['changed'];
       $rows[] = $row;
     }
-
-//    print_r($rows);
-
-    // Migrate needs an Iterator class, not just an array
     return new \ArrayIterator($rows);
   }
 }
