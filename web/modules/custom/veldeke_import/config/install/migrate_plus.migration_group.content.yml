@@ -1,0 +1,8 @@
+id: content
+label: Content migrations
+description: Custom data migrations.
+source_type: json files
+dependencies:
+  enforced:
+    module:
+      - veldeke_tools

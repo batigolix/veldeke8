@@ -8,7 +8,6 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
-use Drupal\migrate_plus\Plugin\MigrationConfigEntityPluginManager;
 
 /**
  * Implements hook_help().
@@ -37,7 +36,6 @@ function veldeke_dictionary_theme() {
   ];
 }
 
-
 /**
  * Implements hook_migration_plugins_alter().
  */
@@ -50,11 +48,7 @@ function veldeke_dictionary_migration_plugins_alter(&$definitions) {
  */
 function veldeke_dictionary_run_migration() {
   $migration = \Drupal::service('plugin.manager.migration')->createInstance('migrate_csv');
-//  $migration->getIdMap()->prepareUpdate();
+  // $migration->getIdMap()->prepareUpdate();
   $executable = new MigrateExecutable($migration, new MigrateMessage());
-
-//  dd($executable);
-
   $executable->import();
 }
-

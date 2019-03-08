@@ -9,3 +9,4 @@ dependencies:
   - book
 config_devel:
   - migrate_plus.migration.books
+  - migrate_plus.migration_group.content

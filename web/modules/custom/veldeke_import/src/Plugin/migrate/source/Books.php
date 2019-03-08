@@ -7,47 +7,63 @@ use Drupal\migrate\Row;
 use Drupal\migrate\MigrateException;
 
 /**
- * Source plugin to import data from JSON files
+ * Source plugin to import data from JSON files.
+ *
  * @MigrateSource(
  *   id = "books"
  * )
  */
 class Books extends SourcePluginBase {
 
+  /**
+   * Tinkers rows from the source.
+   */
   public function prepareRow(Row $row) {
-    $name = $row->getSourceProperty('name');
-    // make sure the title isn't too long for Drupal
-    if (strlen($name) > 255) {
-      $row->setSourceProperty('name', substr($name, 0, 255));
+    $body = $row->getSourceProperty('body');
+    $tags_to_strip = ["h4", "em", "strong"];
+    $replace_with = '';
+    foreach ($tags_to_strip as $tag) {
+      $body = preg_replace("/<\\/?" . $tag . "(.|\\s)*?>/", $replace_with, $body);
     }
+    $row->setSourceProperty('body', $body);
     return parent::prepareRow($row);
   }
 
+  /**
+   * Fetches the ID.
+   */
   public function getIds() {
     $ids = [
       'id' => [
-        'type' => 'string'
-      ]
+        'type' => 'string',
+      ],
     ];
     return $ids;
   }
 
+  /**
+   * Provides the fields.
+   */
   public function fields() {
-    return array(
+    return [
       'nid' => $this->t('NID'),
       'title' => $this->t('Title'),
       'body' => $this->t('Body'),
       'changed' => $this->t('Last changed'),
       'created' => $this->t('Created'),
-    );
+    ];
   }
 
+  /**
+   * Provides string.
+   */
   public function __toString() {
     return "json data";
   }
 
   /**
    * Initializes the iterator with the source data.
+   *
    * @return \Iterator
    *   An iterator containing the data for this source.
    */
@@ -55,15 +71,18 @@ class Books extends SourcePluginBase {
     $filepath = "http://veldeke7.test/veldeke_export/books.json";
     try {
       $result = file_get_contents($filepath);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       echo "Exception: " . $e->getMessage() . "\n";
-      $row['date'] = time();  // fallback – set it to now so we don't have errors
+      // Fallback – set it to now so we don't have errors.
+      $row['date'] = time();
       throw new MigrateException('Cannot read from source');
     }
     if ($result == FALSE) {
       throw new MigrateException('Cannot download remote file  by SFTP.');
     }
-    $books = json_decode($result, TRUE); // sets the title, body, etc.
+    // Sets the title, body, etc.
+    $books = json_decode($result, TRUE);
     foreach ($books['content'] as $book) {
       $item = $book['item'];
       $row['title'] = $item['title'];
@@ -75,4 +94,5 @@ class Books extends SourcePluginBase {
     }
     return new \ArrayIterator($rows);
   }
+
 }

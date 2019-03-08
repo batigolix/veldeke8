@@ -1,18 +1,32 @@
 <?php
 
-namespace Drupal\veldeke_import\Controller;
+namespace Drupal\veldeke_import\EventSubscriber;
 
-use Drupal\Core\Controller\ControllerBase;
+use Drupal\migrate\Event\MigrateEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class AddBooksController.
+ * Class PreImportEvent.
+ *
+ * @package Drupal\veldeke_import\EventSubscriber
  */
-class AddBooksController extends ControllerBase {
+class PostImportEvent implements EventSubscriberInterface {
 
   /**
-   * Build.
+   * Subscribes to post import event.
    */
-  public function build() {
+  public static function getSubscribedEvents() {
+    $events[MigrateEvents::POST_IMPORT][] = [
+      'postImport',
+      0,
+    ];
+    return $events;
+  }
+
+  /**
+   * Performs post import actions.
+   */
+  public function postImport($event) {
 
     // @todo clean url.
     $uri = 'http://veldeke7.test/veldeke_export/book-structure.json';
@@ -29,7 +43,7 @@ class AddBooksController extends ControllerBase {
         foreach ($data as $datum) {
           $nid = _veldeke_import_migrate_get_local_nid($datum->nid);
           $pid = 0;
-          if (is_int($datum->pid) && $datum->pid > 0) {
+          if ($datum->pid > 0) {
             $pid = _veldeke_import_migrate_get_local_nid($datum->pid);
           }
           $bid = _veldeke_import_migrate_get_local_nid($datum->bid);
@@ -79,10 +93,9 @@ class AddBooksController extends ControllerBase {
       echo $e;
       return FALSE;
     }
-    return [
-      '#type' => 'markup',
-      '#markup' => $this->t('Implement method: build'),
-    ];
+
+    echo "importing";
+
   }
 
 }

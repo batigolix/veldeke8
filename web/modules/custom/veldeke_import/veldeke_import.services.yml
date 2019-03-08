@@ -1,0 +1,5 @@
+services:
+  veldeke_import.subscriber.post_import:
+    class: Drupal\veldeke_import\EventSubscriber\PostImportEvent
+    tags:
+      - { name: event_subscriber }
